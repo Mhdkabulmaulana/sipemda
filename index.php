@@ -6,11 +6,11 @@ if(!isset($_SESSION['is_login'])) {
 }
 
 require_once __DIR__."/koneksi.php";
-$query = mysqli_query($koneksi, "SELECT COUNT(id_anggota) FROM `anggota` WHERE 1");
-$jml_anggota= mysqli_fetch_array($query);
+$query = mysqli_query($koneksi, "SELECT COUNT(id_peminjam) FROM `peminjam` WHERE 1");
+$jml_peminjam= mysqli_fetch_array($query);
 
-$query = mysqli_query($koneksi, "SELECT COUNT(kd_buku) FROM `buku` WHERE 1");
-$jml_buku= mysqli_fetch_array($query);
+$query = mysqli_query($koneksi, "SELECT COUNT(kd_sepeda) FROM `sepeda` WHERE 1");
+$jml_sepeda= mysqli_fetch_array($query);
 
 $query = mysqli_query($koneksi, "SELECT COUNT(id_pinjam) FROM `meminjam` WHERE kembali=1");
 $jml_pinjaman= mysqli_fetch_array($query);
@@ -30,7 +30,7 @@ $jml_pengembalian= mysqli_fetch_array($query);
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Perpustakaan</title>
+  <title>Sistem Peminjaman Sepeda</title>
 
   <!-- Custom fonts for this template-->
   <link href="sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,9 +38,8 @@ $jml_pengembalian= mysqli_fetch_array($query);
 
   <!-- Custom styles for this template-->
   <link href="sb-admin/css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
-
+  
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -58,7 +57,7 @@ $jml_pengembalian= mysqli_fetch_array($query);
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Beranda</h1>
+          <h1 class="h3 mb-4 text-gray-800">Selamat Datang <?php echo $_SESSION['username']?></h1>
 
           <!-- Content Row -->
           <div class="row">
@@ -69,8 +68,8 @@ $jml_pengembalian= mysqli_fetch_array($query);
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Anggota</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $jml_anggota[0]; ?></div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Peminjam</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $jml_peminjam[0]; ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -86,8 +85,8 @@ $jml_pengembalian= mysqli_fetch_array($query);
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Buku</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $jml_buku[0]; ?></div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Sepeda</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $jml_sepeda[0]; ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-book fa-2x text-gray-300"></i>
@@ -145,7 +144,7 @@ $jml_pengembalian= mysqli_fetch_array($query);
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Perpustakaan Yuda 2020</span>
+            <span>Copyright &copy; Sistem Peminjaman Sepeda 2024</span>
           </div>
         </div>
       </footer>
@@ -157,7 +156,7 @@ $jml_pengembalian= mysqli_fetch_array($query);
   </div>
   <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
+  <!-- Scroll to Top Button-->  
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>

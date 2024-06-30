@@ -16,9 +16,9 @@ $query = mysqli_query($koneksi, 'insert into anggota(nm_anggota,alamat,ttl_anggo
 
 if ($query) {
     echo "<script>alert('data berhasil disimpan');
-    document.location.href='anggota.php'</script>\n";
+    document.location.href='peminjam.php'</script>\n";
 } else {
     echo "<script>alert('data gagal disimpan');
-    document.location.href='input_anggota.php'</script>\n";
+    document.location.href='input_peminjam.php'</script>\n";
 }
 ?>

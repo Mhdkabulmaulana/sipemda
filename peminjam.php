@@ -14,7 +14,7 @@ if(!isset($_SESSION['is_login'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Perpustakaan | Pinjaman</title>
+  <title>Sistem Peminjaman Sepeda | Peminjam</title>
 
   <!-- Custom fonts for this template-->
   <link href="sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,40 +40,52 @@ if(!isset($_SESSION['is_login'])) {
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Peminjaman</h1>
+            <h1 class="h3 mb-4 text-gray-800">Peminjam</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary float-left">Peminjaman Buku</h6>
+                    <h6 class="m-0 font-weight-bold text-info float-left">Data Peminjam</h6>
+                    <a href="input_peminjam.php" class="btn btn-info float-right">Tambah Peminjam</a>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="proses_pinjam.php">
-                        <div class="form-group">
-                            <label>Nama Peminjam</label>
-                            <select class="form-control" name="anggota">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>ID Anggota</th>
+                                    <th>Nama</th>
+                                    <th>Alamat</th>
+                                    <th>Tempat, Tanggal Lahir</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 <?php
-                                    require_once __DIR__."/koneksi.php";
-                                    $sql_anggota="select * from anggota order by id_anggota";
-                                    $kueri_anggota=mysqli_query($koneksi, $sql_anggota) or die(mysqli_error());
-                                    while (list($kode, $nama_status)=mysqli_fetch_array($kueri_anggota)) {
+                                    require_once __DIR__."/koneksi.php"; 
+
+                                    $query  = "select * from peminjam order by id_peminjam";
+                                    $sql  = mysqli_query($koneksi, $query);
+                                    $no = 1;
+                                    while ($data=mysqli_fetch_array($sql)) {
                                 ?>
-                                    <option  value="<?php echo $kode ?>"><?php echo $nama_status ?></option>
-                                <?php }?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Judul Buku</label>
-                            <select class="form-control" name="buku">
-                                <?php
-                                    $sql_buku="select * from buku order by kd_buku";
-                                    $kueri_buku=mysqli_query($koneksi, $sql_buku) or die(mysqli_error());
-                                    while (list($kode,$nama_status)=mysqli_fetch_array($kueri_buku)) {
-                                ?>
-                                    <option  value="<?php echo $kode ?>"><?php echo $nama_status ?></option>
-                                <?php }?>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
+                                    <tr>
+                                        <td><?php echo $no; ?></td>
+                                        <td><?php echo $data['id_peminjam'];?></td>
+                                        <td><?php echo $data['nm_peminjam'];?></td>
+                                        <td><?php echo $data['alamat'];?></td>
+                                        <td><?php echo $data['ttl_peminjam'];?></td>
+                                        <td><?php echo show_status($data['status_peminjam']);?></td>
+                                        <td>
+                                        <a class="btn btn-warning" href="edit_peminjam.php?id=<?php echo $data['id_peminjam']; ?>">Edit</a>
+                                        <a class="btn btn-danger" href="hapus_peminjam.php?id=<?php echo $data['id_peminjam']; ?>">Hapus</a>
+                                        </td>
+                                    </tr>
+                                <?php $no++; };?>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -87,7 +99,7 @@ if(!isset($_SESSION['is_login'])) {
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Perpustakaan Yuda 2020</span>
+            <span>Copyright &copy; Sistem Peminjaman Sepeda 2024</span>
           </div>
         </div>
       </footer>

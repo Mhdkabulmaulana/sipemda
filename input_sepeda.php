@@ -5,7 +5,6 @@ if(!isset($_SESSION['is_login'])) {
   header("Location: login.php");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@ if(!isset($_SESSION['is_login'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Perpustakaan | Anggota</title>
+  <title>Sistem Peminjaman Sepeda | Tambah Sepeda</title>
 
   <!-- Custom fonts for this template-->
   <link href="sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,52 +39,43 @@ if(!isset($_SESSION['is_login'])) {
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Buku</h1>
+            <h1 class="h3 mb-4 text-gray-800">Sepeda</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary float-left">Data Buku</h6>
-                    <a href="input_buku.php" class="btn btn-primary float-right">Tambah Buku</a>
+                    <h6 class="m-0 font-weight-bold text-info float-left">Tambah Sepeda</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Kode</th>
-                                    <th>Judul</th>
-                                    <th>Pengarang</th>
-                                    <th>Jenis</th>
-                                    <th>Penerbit</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    require_once __DIR__."/koneksi.php"; 
-
-                                    $query  = "select * from buku order by kd_buku";
-                                    $sql  = mysqli_query($koneksi, $query);
-                                    $no = 1;
-                                    while ($data=mysqli_fetch_array($sql)) {
-                                ?>
-                                    <tr>
-                                        <td><?php echo $no; ?></td>
-                                        <td><?php echo $data['kd_buku'];?></td>
-                                        <td><?php echo $data['judul_buku'];?></td>
-                                        <td><?php echo $data['pengarang'];?></td>
-                                        <td><?php echo $data['jenis_buku'];?></td>
-                                        <td><?php echo $data['penerbit'];?></td>
-                                        <td>
-                                            <a href="edit_buku.php?id=<?php echo $data['kd_buku']; ?>" > Edit </a> | 
-                                            <a href="hapus_buku.php?id=<?php echo $data['kd_buku']; ?>" onClick = "return confirm('Apakah Anda ingin mengapus  <?php echo $data['judul_buku']; ?>?')">Hapus</a>
-                                        </td>
-                                    </tr>
-                                <?php $no++; };?>
-
-                            </tbody>
-                        </table>
-                    </div>
+                    <form method="post" action="proses_sepeda.php">
+                        <div class="form-group">
+                            <label>Kode Sepeda</label>
+                            <input type="text" name="kode" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Sepeda</label>
+                            <input type="text" name="nama" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Produksi</label>
+                            <input type="text" name="produksi" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Type Sepeda</label>
+                            <select class="form-control" name="type_sepeda">
+                                <option value="Sepeda-BMX">Sepeda BMX</option>
+                                <option value="Sepeda-Hybrid">Sepeda Hybrid</option>
+                                <option value="Sepeda-Lipat-(Folding Bike)">Sepeda Lipat-(Folding Bike)</option>
+                                <option value="Sepeda-Touring">Sepeda Touring</option>
+                                <option value="Sepeda-Listrik">Sepeda Listrik</option>
+                                <option value="Sepeda-Gunung-(MTB)">Sepeda Gunung-(MTB)</option>
+                                <option value="Sepeda-Balap-(Road Bike)">Sepeda Balap-(Road Bike)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Desc</label>
+                            <input type="text" name="desk" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-info">Simpan</button>
+                    </form>
                 </div>
             </div>
 
@@ -99,7 +89,7 @@ if(!isset($_SESSION['is_login'])) {
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Perpustakaan Yuda 2020</span>
+            <span>Copyright &copy; Sistem Peminjaman Sepeda 2024</span>
           </div>
         </div>
       </footer>

@@ -19,7 +19,7 @@ $data= mysqli_fetch_array($query);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Perpustakaan | Admin</title>
+  <title>Perpustakaan | Edit Admin</title>
 
   <!-- Custom fonts for this template-->
   <link href="sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -48,7 +48,7 @@ $data= mysqli_fetch_array($query);
             <h1 class="h3 mb-4 text-gray-800">Admin</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary float-left">Tambah Admin</h6>
+                    <h6 class="m-0 font-weight-bold text-info float-left">Tambah Admin</h6>
                 </div>
                 <div class="card-body">
                     <form method="post" action="proses_edit_admin.php?id=<?php echo $id;?>">
@@ -64,7 +64,7 @@ $data= mysqli_fetch_array($query);
                             <label>password</label>
                             <input type="password" name="password" value="" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-info">Simpan</button>
                     </form>
                 </div>
             </div>
@@ -79,7 +79,7 @@ $data= mysqli_fetch_array($query);
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Perpustakaan Yuda 2020</span>
+          <span>Copyright &copy; Sistem Peminjaman Sepeda 2024</span>
           </div>
         </div>
       </footer>

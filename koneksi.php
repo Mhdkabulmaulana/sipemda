@@ -2,7 +2,7 @@
 $servername = "localhost";
 $user		= "root";
 $pasword	= "";
-$db			= "perpustakaan_yuda";
+$db			= "pem_sepeda";
 
 $koneksi = mysqli_connect($servername,$user, $pasword)
 			or die('gagal terkoneksi'.mysqli_error());

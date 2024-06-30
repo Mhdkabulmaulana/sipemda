@@ -43,8 +43,8 @@ if(!isset($_SESSION['is_login'])) {
             <h1 class="h3 mb-4 text-gray-800">Admin</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary float-left">Data Admin</h6>
-                    <a href="input_admin.php" class="btn btn-primary float-right">Tambah Admin</a>
+                    <h6 class="m-0 font-weight-bold text-info float-left">Data Admin</h6>
+                    <a href="input_admin.php" class="btn btn-info float-right">Tambah Admin</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -71,7 +71,8 @@ if(!isset($_SESSION['is_login'])) {
                                         <td><?php echo $data['nama'];?></td>
                                         <td><?php echo $data['username'];?></td>
                                         <td>
-                                            <a href="edit_admin.php?id=<?php echo $data['id']; ?>">Edit</a> | <a href="hapus_admin.php?id=<?php echo $data['id']; ?>">Hapus</a>
+                                            <a class="btn btn-warning" href="edit_admin.php?id=<?php echo $data['id']; ?>">Edit</a>
+                                            <a class="btn btn-danger" href="hapus_admin.php?id=<?php echo $data['id']; ?>">Hapus</a>
                                         </td>
                                     </tr>
                                 <?php $no++; };?>
@@ -92,7 +93,7 @@ if(!isset($_SESSION['is_login'])) {
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Perpustakaan Yuda 2020</span>
+          <span>Copyright &copy; Sistem Peminjaman Sepeda 2024</span>
           </div>
         </div>
       </footer>

@@ -7,14 +7,12 @@ if(!isset($_SESSION['is_login'])) {
 
 require_once __DIR__."/koneksi.php";
 
-$anggota = $_POST['anggota'];
-$buku = $_POST['buku'];
+$peminjam = $_POST['peminjam'];
+$sepeda = $_POST['sepeda'];
 $tgl = date('Y-m-d');
 
-$query = mysqli_query($koneksi, "UPDATE meminjam SET tgl_pinjam ='$tgl',
-										id_anggota			='$anggota',
-										kd_buku				='$buku'
-										where id_pinjam	='$_GET[id]'");
+$query = mysqli_query($koneksi, "UPDATE meminjam SET tgl_pinjam ='$tgl', id_peminjam ='$peminjam', kd_sepeda ='$sepeda'
+		 where id_pinjam	='$_GET[id]'");
 if ($query) {
 	echo "<script>alert('data berhasil disimpan');
 	document.location.href='pinjam.php'</script>\n";

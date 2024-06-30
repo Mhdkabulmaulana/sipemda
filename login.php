@@ -17,7 +17,7 @@ if(isset($_SESSION['is_login'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Perpustakaan - Login</title>
+  <title>Sistem Peminjaman Sepeda - Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="sd-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -28,7 +28,7 @@ if(isset($_SESSION['is_login'])) {
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-info">
 
   <div class="container">
 
@@ -37,7 +37,8 @@ if(isset($_SESSION['is_login'])) {
 
       <div class="col-lg-6">
           <div class="text-center mt-5">
-            <h1 class="h4 text-white mb-4">Sistem Informasi Perpustakaan</h1>
+            <img src="img/cycling.gif" alt="" width="20%">
+            <h1 class="h4 text-white mb-4 mt-4">Sistem Peminjaman Sepeda</h1>
           </div>
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
@@ -46,16 +47,16 @@ if(isset($_SESSION['is_login'])) {
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Silahkan Masuk</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Silahkan Login</h1>
                   </div>
                   <form class="user" action="proses_login.php" method="post">
                     <div class="form-group">
-                      <input type="username" name="username" class="form-control form-control-user" placeholder="Enter Username...">
+                      <input type="username" name="username" class="form-control form-control-user" placeholder="Masukkan Username Anda">
                     </div>
                     <div class="form-group">
                       <input type="password" name="password" class="form-control form-control-user" placeholder="Password">
                     </div>
-                    <button type="submit" name="login-member" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" name="login-member" class="btn btn-info btn-user btn-block">
                       Login
                     </a>
                   </form>

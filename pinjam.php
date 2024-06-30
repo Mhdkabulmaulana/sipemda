@@ -14,7 +14,7 @@ if(!isset($_SESSION['is_login'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Perpustakaan | Anggota</title>
+  <title>Sistem Peminjaman Sepeda | Peminjaman</title>
 
   <!-- Custom fonts for this template-->
   <link href="sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,8 +43,8 @@ if(!isset($_SESSION['is_login'])) {
             <h1 class="h3 mb-4 text-gray-800">Peminjaman</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary float-left">Data Peminjaman</h6>
-                    <a href="pinjam_buku.php" class="btn btn-primary float-right">Pinjam buku</a>
+                    <h6 class="m-0 font-weight-bold text-info float-left">Data Peminjaman</h6>
+                    <a href="pinjam_sepeda.php" class="btn btn-info float-right">Pinjam Sepeda</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -63,9 +63,9 @@ if(!isset($_SESSION['is_login'])) {
                                 <?php
                                     require_once __DIR__."/koneksi.php"; 
 
-                                    $query  = "select * from meminjam,buku,anggota
-                                    where meminjam.id_anggota = anggota.id_anggota and
-                                    meminjam.kd_buku = buku.kd_buku and meminjam.kembali = 1
+                                    $query  = "select * from meminjam,sepeda,peminjam
+                                    where meminjam.id_peminjam = peminjam.id_peminjam and
+                                    meminjam.kd_sepeda = sepeda.kd_sepeda and meminjam.kembali = 1
                                     order by id_pinjam";
                                     $sql  = mysqli_query($koneksi, $query);
                                     $no = 1;
@@ -75,10 +75,11 @@ if(!isset($_SESSION['is_login'])) {
                                         <td><?php echo $no; ?></td>
                                         <td><?php echo $data['tgl_pinjam'];?></td>
                                         <td><?php echo $data['jumlah_pinjam'];?></td>
-                                        <td><?php echo $data['nm_anggota'];?></td>
-                                        <td><?php echo $data['judul_buku'];?></td>
+                                        <td><?php echo $data['nm_peminjam'];?></td>
+                                        <td><?php echo $data['nama_sepeda'];?></td>
                                         <td>
-                                        <a href="edit_pinjam.php?id=<?php echo $data['id_pinjam']; ?>" >Edit</a> | <a href="kembali_buku.php?id=<?php echo $data['id_pinjam']; ?>" onClick = "return confirm('Apakah Anda ingin mengembalikan  <?php echo $data['judul_buku']; ?>?')">Kembalikan</a>
+                                        <a class="btn btn-warning" href="edit_pinjam.php?id=<?php echo $data['id_pinjam']; ?>" >Edit</a>
+                                        <a class="btn btn-primary" href="kembali_sepeda.php?id=<?php echo $data['id_pinjam']; ?>" onClick = "return confirm('Apakah Anda ingin mengembalikan  <?php echo $data['nama_sepeda']; ?>?')">Kembalikan</a>
                                         </td>
                                     </tr>
                                 <?php $no++; };?>
@@ -99,7 +100,7 @@ if(!isset($_SESSION['is_login'])) {
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Perpustakaan Yuda 2020</span>
+          <span>Copyright &copy; Sistem Peminjaman Sepeda 2024</span>
           </div>
         </div>
       </footer>

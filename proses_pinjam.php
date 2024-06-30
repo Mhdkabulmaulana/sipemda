@@ -7,11 +7,11 @@ if(!isset($_SESSION['is_login'])) {
 
 require_once __DIR__."/koneksi.php";
 
-$anggota	= $_POST['anggota'];
-$buku		= $_POST['buku'];
+$peminjam	= $_POST['peminjam'];
+$sepeda		= $_POST['sepeda'];
 
 
-$query = mysqli_query($koneksi, 'insert into meminjam(tgl_pinjam,jumlah_pinjam,id_anggota,kd_buku,kembali) values ("'.date('Y-m-d').'",1,"'.$anggota.'","'.$buku.'",1)');
+$query = mysqli_query($koneksi, 'insert into meminjam(tgl_pinjam,jumlah_pinjam,id_peminjam,kd_sepeda,kembali) values ("'.date('Y-m-d').'",1,"'.$peminjam.'","'.$sepeda.'",1)');
 
 if ($query) {
     echo "<script>alert('data berhasil disimpan');

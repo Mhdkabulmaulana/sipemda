@@ -48,21 +48,21 @@ $data = mysqli_fetch_array($query);
             <h1 class="h3 mb-4 text-gray-800">Peminjaman</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary float-left">Peminjaman Buku</h6>
+                    <h6 class="m-0 font-weight-bold text-warning float-left">Peminjaman Sepeda</h6>
                 </div>
                 <div class="card-body">
                     <form method="post" action="proses_edit_pinjam.php?id=<?php echo $id;?>">
                         <div class="form-group">
                             <label>Nama Peminjam</label>
-                            <select class="form-control" name="anggota">
+                            <select class="form-control" name="peminjam">
                                 <?php
-                                    $sql_anggota="select * from anggota order by id_anggota";
-                                    $kueri_anggota=mysqli_query($koneksi, $sql_anggota) or die(mysqli_error());
-                                    while (list($kode, $nama_status)=mysqli_fetch_array($kueri_anggota)) {
+                                    $sql_peminjam="select * from peminjam order by id_peminjam";
+                                    $kueri_peminjam=mysqli_query($koneksi, $sql_peminjam) or die(mysqli_error());
+                                    while (list($kode, $nama_status)=mysqli_fetch_array($kueri_peminjam)) {
                                 ?>
                                     <option  value="<?php echo $kode ?>"
                                         <?php 
-                                            if($kode == $data['id_anggota']) {
+                                            if($kode == $data['id_peminjam']) {
                                                 echo("selected");
                                             }
                                         ?>
@@ -73,16 +73,16 @@ $data = mysqli_fetch_array($query);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Judul Buku</label>
-                            <select class="form-control" name="buku">
+                            <label>Sepeda</label>
+                            <select class="form-control" name="sepeda">
                                 <?php
-                                    $sql_buku="select * from buku order by kd_buku";
-                                    $kueri_buku=mysqli_query($koneksi, $sql_buku) or die(mysqli_error());
-                                    while (list($kode,$nama_status)=mysqli_fetch_array($kueri_buku)) {
+                                    $sql_sepeda="select * from sepeda order by kd_sepeda";
+                                    $kueri_sepeda=mysqli_query($koneksi, $sql_sepeda) or die(mysqli_error());
+                                    while (list($kode,$nama_status)=mysqli_fetch_array($kueri_sepeda)) {
                                 ?>
                                     <option  value="<?php echo $kode ?>"
                                         <?php 
-                                            if($kode == $data['kd_buku']) {
+                                            if($kode == $data['kd_sepeda']) {
                                                 echo("selected");
                                             }
                                         ?>
@@ -92,7 +92,7 @@ $data = mysqli_fetch_array($query);
                                 <?php }?>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-warning">Simpan</button>
                     </form>
                 </div>
             </div>
@@ -107,7 +107,7 @@ $data = mysqli_fetch_array($query);
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Perpustakaan Yuda 2020</span>
+          <span>Copyright &copy; Sistem Peminjaman Sepeda 2024</span>
           </div>
         </div>
       </footer>

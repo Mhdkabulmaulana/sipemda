@@ -5,6 +5,7 @@ if(!isset($_SESSION['is_login'])) {
   header("Location: login.php");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@ if(!isset($_SESSION['is_login'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Perpustakaan | Buku</title>
+  <title>Sistem Peminjaman Sepeda | Peminjaman Sepeda</title>
 
   <!-- Custom fonts for this template-->
   <link href="sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,45 +40,39 @@ if(!isset($_SESSION['is_login'])) {
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Buku</h1>
+            <h1 class="h3 mb-4 text-gray-800">Peminjaman</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary float-left">Tambah Buku</h6>
+                    <h6 class="m-0 font-weight-bold text-info float-left">Peminjaman Sepeda</h6>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="proses_buku.php">
+                    <form method="post" action="proses_pinjam.php">
                         <div class="form-group">
-                            <label>Kode Buku</label>
-                            <input type="text" name="kode" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Judul</label>
-                            <input type="text" name="judul" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Pengarang</label>
-                            <input type="text" name="pengarang" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Jenis</label>
-                            <select class="form-control" name="jenis">
-                                <option value="Novel">Novel</option>
-                                <option value="Komik">Komik</option>
-                                <option value="Ensiklopedi">Ensiklopedi</option>
-                                <option value="Dongeng">Dongeng</option>
-                                <option value="Biografi">Biografi</option>
-                                <option value="Karya Ilmiah">Karya Ilmiah</option>
-                                <option value="Kamus">Kamus</option>
-                                <option value="Panduan">Panduan</option>
-                                <option value="Fotografi">Fotografi</option>
-                                <option value="Tafsir">Tafsir</option>
+                            <label>Nama Peminjam</label>
+                            <select class="form-control" name="peminjam">
+                                <?php
+                                    require_once __DIR__."/koneksi.php";
+                                    $sql_peminjam="select * from peminjam order by id_peminjam";
+                                    $kueri_peminjam=mysqli_query($koneksi, $sql_peminjam) or die(mysqli_error());
+                                    while (list($kode, $nama_status)=mysqli_fetch_array($kueri_peminjam)) {
+                                ?>
+                                    <option  value="<?php echo $kode ?>"><?php echo $nama_status ?></option>
+                                <?php }?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Penerbit</label>
-                            <input type="text" name="penerbit" class="form-control">
+                            <label>Sepeda</label>
+                            <select class="form-control" name="sepeda">
+                                <?php
+                                    $sql_sepeda="select * from sepeda order by kd_sepeda";
+                                    $kueri_sepeda=mysqli_query($koneksi, $sql_sepeda) or die(mysqli_error());
+                                    while (list($kode,$nama_status)=mysqli_fetch_array($kueri_sepeda)) {
+                                ?>
+                                    <option  value="<?php echo $kode ?>"><?php echo $nama_status ?></option>
+                                <?php }?>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-info">Simpan</button>
                     </form>
                 </div>
             </div>
@@ -92,7 +87,7 @@ if(!isset($_SESSION['is_login'])) {
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Perpustakaan Yuda 2020</span>
+          <span>Copyright &copy; Sistem Peminjaman Sepeda 2024</span>
           </div>
         </div>
       </footer>

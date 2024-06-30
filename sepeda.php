@@ -1,14 +1,9 @@
-<?php 
+<?php
 session_start(); 
 // cek jika belom login, pindah ke halaman login
 if(!isset($_SESSION['is_login'])) {
   header("Location: login.php");
 }
-
-require_once __DIR__."/koneksi.php";
-$id = $_GET['id'];
-$query = mysqli_query($koneksi, "select * from anggota where id_anggota=$id");
-$data= mysqli_fetch_array($query);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +14,7 @@ $data= mysqli_fetch_array($query);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Perpustakaan | Anggota</title>
+  <title>Sistem Peminjaman Sepeda | Sepeda</title>
 
   <!-- Custom fonts for this template-->
   <link href="sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,35 +40,52 @@ $data= mysqli_fetch_array($query);
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Anggota</h1>
+            <h1 class="h3 mb-4 text-gray-800">Sepeda</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary float-left">Edit Anggota</h6>
+                    <h6 class="m-0 font-weight-bold text-info float-left">Data Sepeda</h6>
+                    <a href="input_sepeda.php" class="btn btn-info float-right">Tambah Sepeda</a>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="proses_edit_anggota.php?id=<?php echo $id;?>">
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" name="nama" class="form-control" value="<?php echo $data['nm_anggota']?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Alamat</label>
-                            <textarea class="form-control" name="alamat"> <?php echo $data['alamat']?></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Tempat Tanggal Lahir</label>
-                            <input type="text" name="ttl" class="form-control" value="<?php echo $data['ttl_anggota']?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select class="form-control" name="status">
-                                <option value="<?php echo $data['status_anggota']?>"><?php echo show_status($data['status_anggota'])?></option>
-                                <option value="1">aktif</option>
-                                <option value="2">tidak aktif</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode</th>
+                                    <th>Nama Sepeda</th>
+                                    <th>Produksi</th>
+                                    <th>Type Sepeda</th>
+                                    <th>Desc</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    require_once __DIR__."/koneksi.php"; 
+
+                                    $query  = "select * from sepeda order by kd_sepeda";
+                                    $sql  = mysqli_query($koneksi, $query);
+                                    $no = 1;
+                                    while ($data=mysqli_fetch_array($sql)) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $no; ?></td>
+                                        <td><?php echo $data['kd_sepeda'];?></td>
+                                        <td><?php echo $data['nama_sepeda'];?></td>
+                                        <td><?php echo $data['produksi'];?></td>
+                                        <td><?php echo $data['type_sepeda'];?></td>
+                                        <td><?php echo $data['desk'];?></td>
+                                        <td>
+                                            <a class="btn btn-warning" href="edit_sepeda.php?id=<?php echo $data['kd_sepeda']; ?>" > Edit </a>
+                                            <a class="btn btn-danger" href="hapus_sepeda.php?id=<?php echo $data['kd_sepeda']; ?>" onClick = "return confirm('Apakah Anda ingin mengapus  <?php echo $data['nama_sepeda']; ?>?')">Hapus</a>
+                                        </td>
+                                    </tr>
+                                <?php $no++; };?>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -87,7 +99,7 @@ $data= mysqli_fetch_array($query);
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Perpustakaan Yuda 2020</span>
+          <span>Copyright &copy; Sistem Peminjaman Sepeda 2024</span>
           </div>
         </div>
       </footer>
